@@ -1,10 +1,8 @@
 package com.erdem.dockerizedcrud.model;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,8 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +27,16 @@ public class User {
 
     @Column(name = "create_time")
     private LocalDateTime createTime;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
+    @Transient
+    private String accessToken;
+
+    @Transient
+    private String refreshToken;
+
+
+
 }

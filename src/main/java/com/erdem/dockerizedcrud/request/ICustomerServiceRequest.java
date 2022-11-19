@@ -8,7 +8,7 @@ import retrofit2.http.*;
 
 import java.util.List;
 
-@Component
+
 public interface ICustomerServiceRequest {
 
     @POST("/api/customers")

@@ -22,8 +22,10 @@ public class AuthenticationController {
     @Autowired
     private IAuthenticationService authenticationService;
 
+
     @Autowired
     private IUserService userService;
+   // private IUserService userService;
 
     @PostMapping("sign-up") //api/authentication/sign-up
     public ResponseEntity<?> signUp(@RequestBody User user) {

@@ -42,7 +42,7 @@ public class RetrofitConfiguration { // interfaceleri OKHTTP ye cevirir
 
     @Bean
     public ICustomerServiceRequest customerServiceRequest(Retrofit.Builder secureKeyBuilder,
-                                                          @Value("http:/localhost:5858/") String baseUrl) {
+                                                          @Value("http:/localhost:5555/") String baseUrl) {
         return secureKeyBuilder.baseUrl(baseUrl)
                 .build().create(ICustomerServiceRequest.class);
     }

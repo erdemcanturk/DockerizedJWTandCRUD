@@ -8,6 +8,7 @@ import com.erdem.dockerizedcrud.security.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -42,9 +43,10 @@ public class JwtProvider  implements IJwtProvider {
 
     //public ve private keyler. Private key PKCS8 ile, public X509 ile encode oluyor.
     public JwtProvider(@Value("${authentication.jwt.private-key}") String jwtPrivateKeyStr,
-                       @Value("${authentication.jwt.public-key}") String jwtPublicKeyStr)
-    {
+                       @Value("${authentication.jwt.public-key}") String jwtPublicKeyStr) {
         KeyFactory keyFactory = getKeyFactory();
+
+
 
         try
         {
@@ -60,6 +62,7 @@ public class JwtProvider  implements IJwtProvider {
             throw new RuntimeException("Yanlis Key Spesikasyonu", e);
         }
     }
+
 
 
     @Override
@@ -78,8 +81,7 @@ public class JwtProvider  implements IJwtProvider {
     }
 
     @Override
-    public Authentication getAuthentication(HttpServletRequest request)
-    {
+    public Authentication getAuthentication(HttpServletRequest request) {
         String token = resolveToken(request);
         if (token == null)
         {
@@ -100,6 +102,7 @@ public class JwtProvider  implements IJwtProvider {
 
         UserDetails userDetails = new UserPrincipal(userId, username, null);
         return username != null ? new UsernamePasswordAuthenticationToken(userDetails, null, authorities) : null;
+
     }
 
     @Override

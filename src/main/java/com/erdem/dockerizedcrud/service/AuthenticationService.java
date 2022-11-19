@@ -5,6 +5,7 @@ import com.erdem.dockerizedcrud.security.UserPrincipal;
 import com.erdem.dockerizedcrud.security.jwt.IJwtProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,10 +18,11 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements IAuthenticationService
 {
 
-     AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-
-    IJwtProvider jwtProvider;
+    @Autowired
+    private IJwtProvider jwtProvider;
 
     @Override
     public String signInAndReturnJWT(User signInRequest) //kimlik kontrolunu yapar
