@@ -28,14 +28,7 @@ public class User {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role;
-    @Transient
-    private String accessToken;
 
-    @Transient
-    private String refreshToken;
 
 
 

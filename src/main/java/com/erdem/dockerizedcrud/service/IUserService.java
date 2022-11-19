@@ -1,7 +1,6 @@
 package com.erdem.dockerizedcrud.service;
 
 
-import com.erdem.dockerizedcrud.model.Role;
 import com.erdem.dockerizedcrud.model.User;
 
 
@@ -14,7 +13,7 @@ public interface IUserService
     User saveUser(User user);
 
     Optional<User> findBUsername(String username);
-    void changeRole(Role newRole, String username);
+
 
     List<User> findAllUsers();
 }

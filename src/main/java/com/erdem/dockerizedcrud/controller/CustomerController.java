@@ -30,7 +30,7 @@ public class CustomerController {
         return customerRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("saveCustomer")
     public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
         logger.log(Level.FINE, "Musteri kaydi basarili");
         return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);
