@@ -4,6 +4,8 @@ package com.erdem.dockerizedcrud.controller;
 import com.erdem.dockerizedcrud.model.User;
 import com.erdem.dockerizedcrud.service.IAuthenticationService;
 import com.erdem.dockerizedcrud.service.IUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("api/authentication")//pre-path
+@Api(value = "User Api documentation")
 public class AuthenticationController {
 
     private static Logger logger = Logger.getLogger((AuthenticationController.class).getName());
@@ -27,6 +30,7 @@ public class AuthenticationController {
     private IUserService userService;
    // private IUserService userService;
 
+    @ApiOperation(value = "New User sign up method")
     @PostMapping("sign-up") //api/authentication/sign-up
     public ResponseEntity<?> signUp(@RequestBody User user) {
         if (userService.findBUsername(user.getUsername()).isPresent()) {
@@ -37,6 +41,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Authenticated user sign in method")
     @PostMapping("sign-in")//api/authentication/sign-in
     public ResponseEntity<?> signIn(@RequestBody User user) {
         logger.log(Level.INFO, "Sign-in basarili");
